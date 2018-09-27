@@ -8,6 +8,7 @@ var rover = {
   },
   travelLog: []
 };
+
 // ======================
 
 function turnLeft(rover){
@@ -54,20 +55,35 @@ function turnRight(rover){
 
 function moveForward(rover){
   console.log("moveForward was called");
-
   switch (rover.direction) {
-    case 'N':
-      rover.position.y = rover.position.y - 1;
-      break;
-    case 'W':
+  case 'N':
+    if (rover.position.y > 0) {
+      rover.position.y = rover.position.y -1;     
+    } else {
+      rover.position.y = rover.position.y + 0;
+    }
+    break;
+  case 'W':
+    if (rover.position.x > 0) {
       rover.position.x = rover.position.x - 1;
-      break;
-    case 'S':
+    } else {
+      rover.position.x = rover.position.x + 0;
+    }
+    break;
+  case 'S':
+    if (rover.position.y < 10) {
       rover.position.y = rover.position.y + 1;
-      break;
-    case 'E':
+    } else {
+      rover.position.y = rover.position.y + 0;
+    }
+    break;
+  case 'E':
+    if (rover.position.x < 10) {
       rover.position.x = rover.position.x + 1;
-      break;
+    } else {
+      rover.position.x = rover.position.x + 0;
+    }    
+    break;
   }
 };
 
