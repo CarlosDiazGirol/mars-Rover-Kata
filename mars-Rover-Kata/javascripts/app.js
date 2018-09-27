@@ -5,7 +5,8 @@ var rover = {
   position: {
     x: 0,
     y: 0
-  }
+  },
+  travelLog: ''
 };
 // ======================
 
@@ -28,13 +29,13 @@ function turnLeft(rover){
       break;
   }
   rover.direction = newDirection;
-}
+};
 
 function turnRight(rover){ 
   console.log('turnRight was called');
 
   var newDirection;
-  switch (rover.x) {
+  switch (rover.direction) {
     case 'N':
       newDirection = 'E';
       break;
@@ -49,11 +50,11 @@ function turnRight(rover){
       break;
   }
   rover.direction = newDirection;
-}
+};
 
 function moveForward(rover){
   console.log("moveForward was called");
-  
+
   switch (rover.direction) {
     case 'N':
       rover.position.y = rover.position.y - 1;
@@ -68,4 +69,28 @@ function moveForward(rover){
       rover.position.x = rover.position.x + 1;
       break;
   }
+};
+
+function doMove(move, rover) {
+  switch (move) {
+    case 'l':
+      turnLeft(rover);
+      break;
+    case 'r':
+      turnRight(rover);
+      break;
+    case 'f':
+      moveForward(rover);
+      break;
+  }
 }
+
+function doCommands(moves, rover) {
+  var letras = moves.split('');
+  for (i = 0; i < letras.length; i++) {
+    var move = letras[i];
+    doMove(move, rover);
+  }
+}
+
+
