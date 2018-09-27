@@ -6,7 +6,7 @@ var rover = {
     x: 0,
     y: 0
   },
-  travelLog: ''
+  travelLog: []
 };
 // ======================
 
@@ -90,6 +90,7 @@ function doCommands(moves, rover) {
   for (i = 0; i < letras.length; i++) {
     var move = letras[i];
     doMove(move, rover);
+    rover.travelLog.push(move);
   }
 }
 
