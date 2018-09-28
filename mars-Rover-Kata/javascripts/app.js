@@ -10,8 +10,40 @@ var rover = {
 };
 var min = 0;
 var max = 9;
+var yDimension = 0;
+var xDimension = 0; 
+
+var roadMap = [ 
+  ['R',' ',' ',' ',' ','S',' ',' ',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+  [' ',' ',' ',' ','S',' ',' ',' ',' ',' '],
+  [' ','S',' ',' ',' ',' ',' ','R',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+  [' ',' ',' ','S',' ','S',' ',' ',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' ','R',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '] ];
 
 // ======================
+
+function dimensionalMap(yNewDimension, xNewDimension) {
+  if (yNewDimension >= 0 && yNewDimension <= 9 && xNewDimension >= 0 && xNewDimension <= 9) {
+    if (roadMap[yNewDimension][xNewDimension] == 'S') {
+      console.log('Una roca!!! Noooo pueeeedeees pasaaaar!!!');
+    } else if (roadMap[yNewDimension][xNewDimension] == 'R') {
+      console.log('Sooooo');
+    } else {
+      roadMap[yNewDimension][xNewDimension] = roadMap[yDimension][xDimension]; 
+      roadMap[yDimension][xDimension] = ' ';
+      yDimension = yNewDimension;
+      xDimension = xNewDimension;
+    }
+  } else {
+    console.log('te sales del mapa');
+  }
+  console.log(roadMap.join('\n'));
+}
 
 function turnLeft(rover){
   console.log('turnLeft was called');
@@ -59,22 +91,22 @@ function moveForward(rover){
   console.log("moveForward was called");
   switch (rover.direction) {
     case 'N':
-      if (rover.position.y > 0) {
+      if (rover.position.y > min) {
         rover.position.y -= 1;     
       }
       break;
     case 'W':
-      if (rover.position.x > 0) {
+      if (rover.position.x > min) {
         rover.position.x -= 1;
       }
       break;
     case 'S':
-      if (rover.position.y < 9) {
+      if (rover.position.y < max) {
         rover.position.y += 1;
       } 
       break;
     case 'E':
-      if (rover.position.x < 9) {
+      if (rover.position.x < max) {
         rover.position.x += 1;
       }    
       break;
@@ -122,7 +154,7 @@ function doMove(move, rover) {
       moveBackwards(rover);
       break;
     default:
-    console.log('error, imposible do all moves');
+    console.log('error, eso no es un movimiento permitido');
   } 
 } 
 
@@ -135,5 +167,7 @@ function doCommands(moves, rover) {
     rover.travelLog.push(move);
   }
 }
+
+console.log(roadMap.join('\n') + '\n\n');
 
 
