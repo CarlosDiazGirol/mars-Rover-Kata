@@ -6,6 +6,7 @@ var roverDirection = {
   south: [3, "south"],
   west:  [4, "west"]
 }
+var rover = roverDirection["north"][0];
 var newDirection = roverDirection['north'];
 var left = 1;
 var right = 1;
@@ -29,19 +30,12 @@ function turnLeft(rover){
 function turnRight(rover){
   newDirection = newDirection + rover;
   return newDirection;
-  if (newDirection = 2) { // Este es el valor de North que pasa a East   
-    console.log(newDirection + " hola");
-  } else if (newDirection = 3) {
-    console.log(newDirection + " caracola");
-  }
+    if (newDirection = 2) { // Este es el valor de North que pasa a East   
+      console.log(newDirection + " hola");
+    } else if (newDirection = 3) {
+      console.log(newDirection + " caracola");
+    }
 }
-
-
-
-
-
-console.log(newDirection)
-
 
 
 function moveForward(rover){
